@@ -1,0 +1,12 @@
+# Folder of virtual environment
+/venv_fd
+
+/AK.txt
+
+# Folders generate by python in runtime
+/Controllers/__pycache__
+/Views/__pycache__
+/Resources/__pycache__
+
+# Images of example
+/Images
