@@ -35,6 +35,6 @@ def face_identify(image_name):
 
     else:
         print(f"\nFace identify successfully")
-        return parse
+        return [parse, body]
     
     return None
