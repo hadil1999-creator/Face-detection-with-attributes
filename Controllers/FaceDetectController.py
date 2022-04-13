@@ -1,18 +1,6 @@
+from Controllers import RequestsFunctions
 from Resources import ReadFunctions
 import json
-import requests
-
-
-def post_Http(url, headers, params, body):
-    response = None
-    
-    try:
-        response = requests.request('POST', url, params = params, headers = headers, data = body)
-                
-    except Exception:
-        print(f"\nError in the post function.")
-        
-    return response
 
 
 def face_identify(image_name):
@@ -27,7 +15,7 @@ def face_identify(image_name):
     url = ReadFunctions.get_face_detection_url(ENDPOINT)
     
     try:
-        response = post_Http(url, headers, params, body)
+        response = RequestsFunctions.post_Http(url, headers, params, body)
         parse = json.loads(response.text)
 
     except Exception:
