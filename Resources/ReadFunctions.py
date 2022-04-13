@@ -61,7 +61,7 @@ def get_connection_string():
     
     try:
         if len(EN_AK) == 0:
-            raise ValueError(f"\nERROR: The Api key and endpoint are missing")
+            raise ValueError(f"\nERROR: The Api key and/or endpoint are missing")
     
     except ValueError as ve:
         print(ve)
