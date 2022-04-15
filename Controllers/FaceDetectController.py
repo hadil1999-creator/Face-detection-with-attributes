@@ -22,7 +22,15 @@ def face_identify(image_name):
         print(f"\nError to face identify")
 
     else:
-        print(f"\nFace identify successfully")
-        return [parse, body]
-    
+        try:
+            if len(parse) == 0:
+                raise ValueError(f"\nNo faces identify in the image")
+        
+        except ValueError as ve:
+            print(ve)
+
+        else:    
+            print(f"\nFace identify successfully")
+            return [parse, body]
+        
     return [None, None]
