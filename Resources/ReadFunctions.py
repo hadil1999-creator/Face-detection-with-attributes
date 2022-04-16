@@ -94,19 +94,22 @@ def get_params():
     return FaceDetectConfig.param()
 
 
-""" def open_image(image, binary= False, image_path = ""):
-    img = None
-    
-    path = get_path(image, image_path)
-    
+def open_image(image, binary= False, image_path = ""):
     try:
         if binary:
             img = Image.open(BytesIO(image))
-        else:
-            img = Image.open(path)
             
+        else:
+            path = get_path(image, image_path, True)
+            img = Image.open(path)
+        
     except IOError:
-        print(f"\nError to open image") """
+        print(f"\nError to open image")
+        
+    else:
+        return img
+
+    return None
 
 
 def read_image_with_binary(image_name, image_path = ""):
