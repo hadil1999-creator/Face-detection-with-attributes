@@ -5,12 +5,15 @@ import os
 
 
 
-def get_path(file_name, path = ""):
-    if path == "":
+def get_path(file_name, file_path = "", image = False):
+    if (file_path == "") and (not image):
         path = os.getcwd() + '\\' + file_name
-        
+
+    elif (file_path == "") and image:
+        path = Config.DEFAULT_IMAGE_PATH + '\\' + file_name
+
     else:
-        path = path + '\\' + file_name
+        path = file_path + '\\' + file_name
     
     return path
 
@@ -91,27 +94,25 @@ def get_params():
     return FaceDetectConfig.param()
 
 
-""" def open_image(image, binary= False, path = ""):
+""" def open_image(image, binary= False, image_path = ""):
     img = None
+    
+    path = get_path(image, image_path)
     
     try:
         if binary:
             img = Image.open(BytesIO(image))
         else:
-            img = Image.open(BytesIO(image))
+            img = Image.open(path)
             
     except IOError:
-        print(f"\nError to open image")
- """
+        print(f"\nError to open image") """
+
 
 def read_image_with_binary(image_name, image_path = ""):
     body = None
     
-    if image_path == "":
-        path = get_path(image_name, Config.DEFAULT_IMAGE_PATH)
-        
-    else:
-        path = get_path(image_name, image_path)
+    path = get_path(image_name, image_path, image= True)
     
     try:
         img = open(file = path, mode = 'rb')
