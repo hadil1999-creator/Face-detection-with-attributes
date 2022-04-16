@@ -1,17 +1,25 @@
-import os
 from Resources import Config, FaceDetectConfig
+from io import BytesIO
+from PIL import Image
+import os
 
 
-def read_text_document(file_name, path = ""):
-    
-    content = []
-    
+
+def get_path(file_name, path = ""):
     if path == "":
         path = os.getcwd() + '\\' + file_name
         
     else:
         path = path + '\\' + file_name
     
+    return path
+
+
+def read_text_document(file_name, path_file = ""):
+    
+    content = []
+    
+    path = get_path(file_name, path_file)
     
     try:
         with open(file= path, mode='r', encoding='utf-8') as f:
@@ -83,14 +91,27 @@ def get_params():
     return FaceDetectConfig.param()
 
 
+""" def open_image(image, binary= False, path = ""):
+    img = None
+    
+    try:
+        if binary:
+            img = Image.open(BytesIO(image))
+        else:
+            img = Image.open(BytesIO(image))
+            
+    except IOError:
+        print(f"\nError to open image")
+ """
+
 def read_image_with_binary(image_name, image_path = ""):
     body = None
     
     if image_path == "":
-        path = Config.DEFAULT_IMAGE_PATH + image_name
+        path = get_path(image_name, Config.DEFAULT_IMAGE_PATH)
         
     else:
-        path = image_path + '\\' + image_name
+        path = get_path(image_name, image_path)
     
     try:
         img = open(file = path, mode = 'rb')
