@@ -1,5 +1,6 @@
+from ast import Raise
+from Resources import ReadFunctions
 from PIL import ImageDraw, Image
-from io import BytesIO
 
 
 def get_rectangle(face_posicion):
@@ -13,10 +14,13 @@ def get_rectangle(face_posicion):
 
 def draw_rectangle(data, image):
     try:
-        img = Image.open(BytesIO(image))
+        img = ReadFunctions.open_image(image, True)
+        
+        if img == None:
+            raise ValueError(f"\nError to draw rectangles in faces")
 
-    except IOError:
-        print(f"\nError to generate the image with the face recognition result")
+    except ValueError as ve:
+        print(ve)
         
     else:
         draw = ImageDraw.Draw(img)
@@ -28,3 +32,7 @@ def draw_rectangle(data, image):
         return img
     
     return None
+
+
+""" def draw_features(data, image):
+    pass """
