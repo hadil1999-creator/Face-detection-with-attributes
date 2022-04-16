@@ -108,7 +108,7 @@ def open_image(image, binary= False, image_path = ""):
         
     else:
         return img
-
+    
     return None
 
 
