@@ -11,8 +11,8 @@ def draw_rectangle(data, img, in_attributes= False):
         
         attributes = ReadFunctions.get_dictionary_text(dictionary, 'returnFaceAttributes', ',')
         
-        for face in range(0, len(data)):
-            dimensions = ReadFunctions.get_rectangle(data[face]['faceRectangle'])
+        for face in data:
+            dimensions = ReadFunctions.get_rectangle(face['faceRectangle'])
             
             draw.rectangle((dimensions[0][0], dimensions[1][1], dimensions[0][0]+80, dimensions[1][1]+60),
                            fill= "red")
@@ -22,8 +22,8 @@ def draw_rectangle(data, img, in_attributes= False):
                                 fill= "white")
         
     else:
-        for face in range(0, len(data)):
-            dimensions = ReadFunctions.get_rectangle(data[face]['faceRectangle'])
+        for face in data:
+            dimensions = ReadFunctions.get_rectangle(face['faceRectangle'])
             draw.rectangle(dimensions, outline= 'red', width= 2)
     
     return img
