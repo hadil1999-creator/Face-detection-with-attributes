@@ -1,5 +1,6 @@
 from Controllers import FaceDetectController
 from Resources import DrawingFunctions
+from PIL import Image
 
 
 
