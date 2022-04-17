@@ -131,7 +131,29 @@ def read_image_with_binary(image_name, image_path = ""):
         img.close()
         
         return body
-    
+
 
 def get_face_detection_url(endpoint):
     return endpoint + FaceDetectConfig.REQUEST_URL
+
+
+def get_dictionary_text(dictionary, key, separator, get_keys = False):
+    list_values = []
+    text = ""
+    
+    try:
+        if get_keys:
+            list_values = list(dictionary.keys())
+            
+        else:
+            values = str(dictionary[key])
+            list_values = values.split(separator)
+    
+    except Exception:
+        print(f"\nError to get dictionary text")
+    
+    else:
+        for param in list_values:
+            text += (param + ": \n")
+    
+    return text
