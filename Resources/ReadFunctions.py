@@ -157,3 +157,12 @@ def get_dictionary_text(dictionary, key, separator, get_keys = False):
             text += (param + ": \n")
     
     return text
+
+
+def get_rectangle(face_posicion):
+    top = face_posicion['top']
+    left = face_posicion['left']
+    right = left + face_posicion['width']
+    bottom = top + face_posicion['height']
+    
+    return ((left, top), (right, bottom))

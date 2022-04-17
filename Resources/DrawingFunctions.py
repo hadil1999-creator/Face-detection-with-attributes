@@ -3,15 +3,6 @@ from PIL import ImageDraw
 
 
 
-def get_rectangle(face_posicion):
-    top = face_posicion['top']
-    left = face_posicion['left']
-    right = left + face_posicion['width']
-    bottom = top + face_posicion['height']
-    
-    return ((left, top), (right, bottom))
-
-
 def draw_rectangle(data, img, in_attributes= False):
     draw = ImageDraw.Draw(img)
     
@@ -21,7 +12,7 @@ def draw_rectangle(data, img, in_attributes= False):
         attributes = ReadFunctions.get_dictionary_text(dictionary, 'returnFaceAttributes', ',')
         
         for face in range(0, len(data)):
-            dimensions = get_rectangle(data[face]['faceRectangle'])
+            dimensions = ReadFunctions.get_rectangle(data[face]['faceRectangle'])
             
             draw.rectangle((dimensions[0][0], dimensions[1][1], dimensions[0][0]+80, dimensions[1][1]+60),
                            fill= "red")
@@ -32,7 +23,7 @@ def draw_rectangle(data, img, in_attributes= False):
         
     else:
         for face in range(0, len(data)):
-            dimensions = get_rectangle(data[face]['faceRectangle'])
+            dimensions = ReadFunctions.get_rectangle(data[face]['faceRectangle'])
             draw.rectangle(dimensions, outline= 'red', width= 2)
     
     return img
