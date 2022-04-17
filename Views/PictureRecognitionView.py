@@ -11,6 +11,7 @@ def picture_face_recognition(image_name):
         
         if picture != None:
             picture.show()
+            picture.save("result.jpg")
             picture.close()
 
 
@@ -22,6 +23,6 @@ def facial_recognition_with_features(image_name):
         
         if picture != None:
             picture.show()
-            #picture.save("geeks.jpg")
+            picture.save("result.jpg")
             picture.close()
         
