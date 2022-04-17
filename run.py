@@ -4,10 +4,10 @@ from Views import PictureRecognitionView
 def run():
     try:
         menu = '''
-        1.- Picture face recognition
-        2.- Facial recognition with features
+        1.- Reconocimiento de rostros en imagen
+        2.- Reconocimiento facial con atributos
         
-        Selection: '''
+        Selección: '''
         x = int(input(menu))
     
     except Exception:
@@ -21,7 +21,7 @@ def run():
             PictureRecognitionView.facial_recognition_with_features("OmarTobias_3.jpg")
         
         else:
-            print(f"\nSin accion")
+            print(f"\nSin acción")
 
 
 if __name__ == "__main__":
