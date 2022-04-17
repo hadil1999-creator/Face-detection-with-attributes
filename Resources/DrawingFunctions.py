@@ -1,6 +1,5 @@
-from ast import Raise
 from Resources import ReadFunctions
-from PIL import ImageDraw, ImageFont, Image
+from PIL import ImageDraw
 
 
 
@@ -40,19 +39,29 @@ def draw_rectangles_in_faces(data, image):
     
     return None
 
-""" 
-def draw_text(draw, img):
-    pass
+
+""" def write_text(dictionary):
+    keys = list(dictionary.keys())
+    
+    text = ""
+    for key in keys:
+        text += (key + ":\n")
+    
+    return text """
 
 
 def draw_features(data, image):
-    img = draw_rectangle(data, image)
+    img = draw_rectangles_in_faces(data, image)
     
     if img != None:
         draw = ImageDraw.Draw(img)
         
-        draw.rectangle(((10, 10), (100, 60)), fill= "red")
+        for face in range(0, len(data)):
+            dimensions = get_rectangle(data[face]['faceRectangle'])
+            draw.rectangle((dimensions[0][0], dimensions[1][1], dimensions[0][0]+80, dimensions[1][1]+50),
+                           fill= "red")
+            draw.multiline_text((dimensions[0][0]+2, dimensions[1][1]+2),
+                                "Hola gente\nPlop\nPlop",
+                                fill= "white")
         
-        draw.multiline_text((15,15), "Hola gente", fill= "white")
-        
-        return img """
+        return img
