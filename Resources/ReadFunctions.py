@@ -166,3 +166,37 @@ def get_rectangle(face_posicion):
     bottom = top + face_posicion['height']
     
     return ((left, top), (right, bottom))
+
+
+def response_params_FaceDetect(params):
+    params_list = []
+    
+    if params['returnFaceId'] == "true":
+        params_list.append("faceId")
+    
+    if params['returnRecognitionModel'] == "true":
+        params_list.append("recognitionModel")
+    
+    params_list.append("faceRectangle")
+    
+    if params['returnFaceLandmarks'] == "true":
+        params_list.append("faceLandmarks")
+        
+    if params['returnFaceAttributes'] != None:
+        params_list.append("faceAttributes")
+    
+    return params_list
+
+
+""" def get_face_data(face):
+    list_face_data = []
+    params = ""
+    
+    for param in face:
+        if type(face[param]) is dict:
+            list_face_data.append(list(face[param].values()))
+            
+        else:
+            params += (str(face[param]) + "\n")
+    
+    return params """
