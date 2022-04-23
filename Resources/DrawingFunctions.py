@@ -51,6 +51,6 @@ def draw_features(data, image):
     img = draw_rectangles_in_faces(data, image)
     
     if img != None:
-        img = draw_rectangle(data, img, True)
+        img = draw_rectangle(data, img, in_attributes= True)
         
     return img
