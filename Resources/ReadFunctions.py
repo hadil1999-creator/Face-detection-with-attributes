@@ -202,28 +202,107 @@ def get_name(returnFaceId, face_id):
     return name
 
 
-def get_attributes(dict_attributes):
-    attributes_data = ""
+def get_age(age_data):
+    age = str(age_data)
     
-    for attribute in dict_attributes:
-        if type(dict_attributes[attribute]) is dict:
-            pass
-            
-        else:
-            attributes_data += (str(dict_attributes[attribute]) + "\n")
+    if Config.DEFAULT_IDIOM == "español":
+        age += " años."
+        
+    else:
+        age += "years."
+    
+    age += "\n"
+    
+    return age
 
 
-def get_face_data(face_attributes, attributes_params):
+def get_gender(gender_data):
+    gender = gender_data
+    
+    if Config.DEFAULT_IDIOM == "español":
+        if gender == "male": gender = "Hombre."
+        elif gender == "female": gender = "Mujer."
+        else: gender = "Género desconocido."
+        
+    else:
+        gender += "."
+    
+    gender += "\n"
+    
+    return gender
+
+
+def get_smile(data_smile):
+    smile = ""
+    
+    if data_smile > 0.95:
+        smile = "Smiling."
+        
+        if Config.DEFAULT_IDIOM == "español":
+            smile = "Soniente."
+        
+        smile += "\n"
+    
+    return smile
+
+
+def get_facialHair(data_facialHair):
+    pass
+
+
+def get_face_data(face_attributes):
     params_data = ""
-    #response_params = response_params_FaceDetect(params)
     
-    for param in face:
-        if type(face[param]) is dict:
-            if param == "faceAttributes":
-                pass
-                #params_data += (str(face[param]) + "\n")
+    for attribute in face_attributes:
+        if attribute == 'age':
+            params_data = get_age(face_attributes[attribute])
             
+        elif attribute == 'gender':
+            params_data = get_gender(face_attributes[attribute])
+            
+        elif attribute == 'smile':
+            params_data = get_smile(face_attributes[attribute])
+        
+        elif attribute == 'facialHair':
+            params_data = get_facialHair(face_attributes[attribute])
+        
+        elif attribute == 'headPose':
+            pass
+        
+        elif attribute == 'glasses':
+            pass
+        
+        elif attribute == 'emotion':
+            pass
+        
+        elif attribute == 'hair':
+            pass
+        
+        elif attribute == 'makeup':
+            pass
+        
+        elif attribute == 'accessories':
+            pass
+        
+        elif attribute == 'blur':
+            pass
+        
+        elif attribute == 'exposure':
+            pass
+        
+        elif attribute == 'noise':
+            pass
+        
+        elif attribute == 'occlusion':
+            pass
+        
+        elif attribute == 'mask':
+            pass
+        
+        elif attribute == 'qualityForRecognition':
+            pass
+        
         else:
-            params_data += (str(face[param]) + "\n")
+            pass
     
     return params_data
