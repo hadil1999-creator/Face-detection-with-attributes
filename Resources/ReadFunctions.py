@@ -199,7 +199,7 @@ def get_name(returnFaceId, face_id):
             name = face_id[0:8] + "...\n"
 
     else:
-        print(f"\nError, return face id is disabled")
+        name = "Error, return face id is disabled\n"
     
     return name
 
