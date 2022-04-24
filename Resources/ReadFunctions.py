@@ -140,7 +140,6 @@ def get_face_detection_url(endpoint):
 
 def get_dictionary_text(dictionary, key, separator, get_keys = False):
     list_values = []
-    text = ""
     
     try:
         if get_keys:
@@ -154,10 +153,9 @@ def get_dictionary_text(dictionary, key, separator, get_keys = False):
         print(f"\nError to get dictionary text")
     
     else:
-        for param in list_values:
-            text += (param + ": \n")
+        return list_values
     
-    return text
+    return None
 
 
 def get_rectangle(face_posicion):
@@ -213,9 +211,9 @@ def get_attributes(dict_attributes):
             
         else:
             attributes_data += (str(dict_attributes[attribute]) + "\n")
-        
 
-def get_face_data(face, params):
+
+def get_face_data(face_attributes, attributes_params):
     params_data = ""
     #response_params = response_params_FaceDetect(params)
     
