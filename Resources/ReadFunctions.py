@@ -138,16 +138,12 @@ def get_face_detection_url(endpoint):
     return endpoint + FaceDetectConfig.REQUEST_URL
 
 
-def get_dictionary_text(dictionary, key, separator, get_keys = False):
+def get_dictionary_text(dictionary, key, separator):
     list_values = []
     
     try:
-        if get_keys:
-            list_values = list(dictionary.keys())
-            
-        else:
-            values = str(dictionary[key])
-            list_values = values.split(separator)
+        values = str(dictionary[key])
+        list_values = values.split(separator)
     
     except Exception:
         print(f"\nError to get dictionary text")
@@ -167,24 +163,23 @@ def get_rectangle(face_posicion):
     return ((left, top), (right, bottom))
 
 
-def response_params_FaceDetect(params):
-    params_list = []
+def get_keys(dictionary):
+    list_values = []
     
-    if params['returnFaceId'] == "true":
-        params_list.append("faceId")
-    
-    if params['returnRecognitionModel'] == "true":
-        params_list.append("recognitionModel")
-    
-    params_list.append("faceRectangle")
-    
-    if params['returnFaceLandmarks'] == "true":
-        params_list.append("faceLandmarks")
+    try:
+        list_values = list(dictionary.keys())
         
-    if params['returnFaceAttributes'] != None:
-        params_list.append("faceAttributes")
+        if len(list_values) == 0:
+            raise ValueError(f"\nError try obtain dictionary keys")
     
-    return params_list
+    except ValueError as ve:
+        print(ve)
+    
+    else:
+        return list_values
+    
+    return None
+    
 
 
 def get_name(returnFaceId, face_id):
