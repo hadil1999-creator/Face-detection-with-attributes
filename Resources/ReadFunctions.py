@@ -194,10 +194,12 @@ def get_name(returnFaceId, face_id):
         name = FaceIdentifyController.identify_face()
         
         if name == None:
-            name = face_id[0:8] + "...\n"
+            name = face_id[0:8] + "..."
 
     else:
-        name = "Error, return face id is disabled\n"
+        name = "Error, return face id is disabled"
+    
+    name += "\n"
     
     return name
 
