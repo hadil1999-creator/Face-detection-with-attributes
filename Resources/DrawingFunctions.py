@@ -24,7 +24,7 @@ def draw_rectangle(data, img, in_attributes= False, with_name= False):
                 attributes += ReadFunctions.get_name(dictionary['returnFaceId'], face['faceId'])
             
             if face_attributes_params != None:
-                attributes += ReadFunctions.get_face_data(face['faceAttributes'], face_attributes_params)
+                attributes += ReadFunctions.get_face_data(face['faceAttributes'])
             
             draw.multiline_text((dimensions[0][0]+2, dimensions[1][1]+2),
                                 text= attributes,
