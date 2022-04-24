@@ -1,4 +1,5 @@
 from Resources import Config, FaceDetectConfig
+from Controllers import FaceIdentifyController
 from io import BytesIO
 from PIL import Image
 import os
@@ -188,15 +189,34 @@ def response_params_FaceDetect(params):
     return params_list
 
 
-""" def get_face_data(face):
-    list_face_data = []
-    params = ""
+def get_name(dictionary, face_data):
+    name = None
+    
+    if dictionary['returnFaceId'] == 'true':
+        name = FaceIdentifyController.identify_face()
+
+def get_attributes(dict_attributes):
+    attributes_data = ""
+    
+    for attribute in dict_attributes:
+        if type(dict_attributes[attribute]) is dict:
+            pass
+            
+        else:
+            attributes_data += (str(dict_attributes[attribute]) + "\n")
+        
+
+def get_face_data(face, params):
+    params_data = ""
+    #response_params = response_params_FaceDetect(params)
     
     for param in face:
         if type(face[param]) is dict:
-            list_face_data.append(list(face[param].values()))
+            if param == "faceAttributes":
+                pass
+                #params_data += (str(face[param]) + "\n")
             
         else:
-            params += (str(face[param]) + "\n")
+            params_data += (str(face[param]) + "\n")
     
-    return params """
+    return params_data
