@@ -8,3 +8,6 @@ DEFAULT_IMAGE_PATH = os.getcwd() + '\\' + 'Images'
 
 # Name display default
 NAME_DISPLAY = True
+
+# Idiom default
+DEFAULT_IDIOM = "español"
