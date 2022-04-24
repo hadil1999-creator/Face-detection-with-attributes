@@ -189,11 +189,20 @@ def response_params_FaceDetect(params):
     return params_list
 
 
-def get_name(dictionary, face_data):
-    name = None
+def get_name(returnFaceId, face_id):
+    name = ""
     
-    if dictionary['returnFaceId'] == 'true':
+    if returnFaceId == 'true':
         name = FaceIdentifyController.identify_face()
+        
+        if name == None:
+            name = face_id[0:8] + "...\n"
+
+    else:
+        print(f"\nError, return face id is disabled")
+    
+    return name
+
 
 def get_attributes(dict_attributes):
     attributes_data = ""
