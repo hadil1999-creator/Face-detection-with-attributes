@@ -1,21 +1,27 @@
-from Resources import ReadFunctions, FaceDetectConfig
+from Resources import ReadFunctions, FaceDetectConfig, Config
 from PIL import ImageDraw
 
 
 
-def draw_rectangle(data, img, in_attributes= False):
+def draw_rectangle(data, img, in_attributes= False, with_name= False):
     draw = ImageDraw.Draw(img)
     
     if in_attributes:
+        
         dictionary = FaceDetectConfig.param()
         
-        attributes = ReadFunctions.get_dictionary_text(dictionary, 'returnFaceAttributes', ',')
+        attributes = ""
+        
+        #attributes += ReadFunctions.get_dictionary_text(dictionary, 'returnFaceAttributes', ',')
         
         for face in data:
             dimensions = ReadFunctions.get_rectangle(face['faceRectangle'])
             
             draw.rectangle((dimensions[0][0], dimensions[1][1], dimensions[0][0]+80, dimensions[1][1]+60),
                            fill= "red")
+            
+            if with_name:
+                attributes += ReadFunctions.get_name(dictionary['returnFaceId'], face['faceId'])
             
             draw.multiline_text((dimensions[0][0]+2, dimensions[1][1]+2),
                                 text= attributes,
@@ -51,6 +57,6 @@ def draw_features(data, image):
     img = draw_rectangles_in_faces(data, image)
     
     if img != None:
-        img = draw_rectangle(data, img, in_attributes= True)
+        img = draw_rectangle(data, img, in_attributes= True, with_name= Config.NAME_DISPLAY)
         
     return img
