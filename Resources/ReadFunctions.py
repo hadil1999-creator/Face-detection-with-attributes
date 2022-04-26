@@ -179,7 +179,6 @@ def get_keys(dictionary):
         return list_values
     
     return None
-    
 
 
 def get_name(returnFaceId, face_id):
@@ -200,13 +199,10 @@ def get_name(returnFaceId, face_id):
 
 
 def get_age(age_data):
-    age = str(age_data)
+    age = str(int(age_data))
     
-    if Config.DEFAULT_IDIOM == "español":
-        age += " años."
-        
-    else:
-        age += "years."
+    if Config.DEFAULT_IDIOM == "español": age += " años."
+    else: age += "years."
     
     age += "\n"
     
@@ -214,17 +210,17 @@ def get_age(age_data):
 
 
 def get_gender(gender_data):
-    gender = gender_data
+    gender = gender_data.lower()
     
     if Config.DEFAULT_IDIOM == "español":
-        if gender == "male": gender = "Hombre."
-        elif gender == "female": gender = "Mujer."
-        else: gender = "Género desconocido."
+        if gender == "male": gender = "Hombre"
+        elif gender == "female": gender = "Mujer"
+        else: gender = "Género desconocido"
         
     else:
-        gender += "."
+        gender = gender_data
     
-    gender += "\n"
+    gender += ".\n"
     
     return gender
 
@@ -244,62 +240,302 @@ def get_smile(data_smile):
 
 
 def get_facialHair(data_facialHair):
-    pass
+    facial_hair = ""
+    
+    try:
+        if data_facialHair['moustache'] > .85:            
+            if Config.DEFAULT_IDIOM == "español": facial_hair += "FH: Bigote. "
+            else: facial_hair += "FH: Mostache. "
+        
+        if data_facialHair['beard'] > .85:
+            if Config.DEFAULT_IDIOM == "español": facial_hair += "Barba. "
+            else: facial_hair += "Beard. "
+        
+        if data_facialHair['sideburns'] > .85:
+            if Config.DEFAULT_IDIOM == "español": facial_hair += "Patillas."
+            else: facial_hair += "Sideburns"
+    
+    except Exception:
+        print(f"\nError to try get the attribute \"facial hair\"")
+    
+    finally:
+        return facial_hair
+
+
+def get_headPose(data_headPose):
+    try:
+        if True:
+            raise NotImplementedError(f"\nNo implement get_facialHair yet")
+    
+    except NotImplementedError as nie:
+        print(nie)
+    
+    return ""
+
+
+def get_glasses(data_glasses):
+    glases = data_glasses.lower()
+    
+    if Config.DEFAULT_IDIOM == "español":
+        if glases == "readingglasses": glases = "Lentes de lectura"
+        elif glases == "sunglasses": glases = "Lentes de sol"
+        elif glases == "swimminggoggles": glases = "Goggles"
+        else: glases = "Sin lentes"
+        
+    else:
+        glases = data_glasses
+    
+    glases += ".\n"
+    
+    return glases
+
+
+def get_emotion(data_emotions):
+    emotions = ""
+    
+    try:
+        if data_emotions['anger'] > .90:            
+            if Config.DEFAULT_IDIOM == "español": emotions += "Ira"
+            else: emotions += "Anger"
+        
+        elif data_emotions['contempt'] > .90:
+            if Config.DEFAULT_IDIOM == "español": emotions += "Desprecio"
+            else: emotions += "Contempt"
+        
+        elif data_emotions['disgust'] > .90:
+            if Config.DEFAULT_IDIOM == "español": emotions += "Asco"
+            else: emotions += "Disgust"
+        
+        elif data_emotions['fear'] > .90:
+            if Config.DEFAULT_IDIOM == "español": emotions += "Miedo"
+            else: emotions += "Fear"
+            
+        elif data_emotions['happiness'] > .90:
+            if Config.DEFAULT_IDIOM == "español": emotions += "Felicidad"
+            else: emotions += "Happiness"
+            
+        elif data_emotions['sadness'] > .90:
+            if Config.DEFAULT_IDIOM == "español": emotions += "Tristeza"
+            else: emotions += "Sadness"
+            
+        elif data_emotions['surprise'] > .90:
+            if Config.DEFAULT_IDIOM == "español": emotions += "Sorpresa"
+            else: emotions += "Surprise"
+            
+        else:
+            if Config.DEFAULT_IDIOM == "español": emotions += "Neutral"
+            else: emotions += "Neutral"
+    
+    except Exception:
+        print(f"\nError to try get the attribute \"facial hair\"")
+
+    else:
+        emotions += ".\n"
+    
+    finally:
+        return emotions
+
+
+def get_hair(data_hair):
+    try:
+        if True:
+            raise NotImplementedError(f"\nNo implement get_hair yet")
+    
+    except NotImplementedError as nie:
+        print(nie)
+    
+    return ""
+
+
+def get_makeup(data_makeup):
+    try:
+        if True:
+            raise NotImplementedError(f"\nNo implement get_makeup yet")
+    
+    except NotImplementedError as nie:
+        print(nie)
+    
+    return ""
+
+
+def get_accessories(data_accessories):
+    accesories = ""
+    
+    try:
+        for accesory in data_accessories:
+            if (accesory['type'] == "headWear") and (accesory['confidence'] > 0.90):
+                if (Config.DEFAULT_IDIOM == "español"): accesories += "Gorra/Sombrero. "
+                else: accesories += "HeadWear. "
+                
+            if (accesory['type'] == "glasses") and (accesory['confidence'] > 0.90):
+                if (Config.DEFAULT_IDIOM == "español"): accesories += "Lentes. "
+                else: accesories += "Glasses. "
+                
+            if (accesory['type'] == "mask") and (accesory['confidence'] > 0.90):
+                if (Config.DEFAULT_IDIOM == "español"): accesories += "Mascara. "
+                else: accesories += "Mask. "
+    
+    except Exception:
+        accesories = ""
+        print(f"\nError to try get accesories.")
+    
+    else:
+        accesories += "\n"
+    
+    finally:
+        return accesories
+
+
+def get_blur(data_blur):
+    try:
+        if True:
+            raise NotImplementedError(f"\nNo implement get_blur yet")
+    
+    except NotImplementedError as nie:
+        print(nie)
+    
+    return ""
+
+
+def get_exposure(data_exposure):
+    exposure = ""
+    
+    if (data_exposure['exposureLevel'] == 'GoodExposure') and (data_exposure['value'] > 0.70):
+        if (Config.DEFAULT_IDIOM == "español"): exposure += "Exposición buena.\n"
+        else: exposure += "GoodExposure.\n"
+    
+    if (data_exposure['exposureLevel'] == 'OverExposure') and (data_exposure['value'] > 0.70):
+        if (Config.DEFAULT_IDIOM == "español"): exposure += "Sobreexposición.\n"
+        else: exposure += "OverExposure.\n"
+    
+    if (data_exposure['exposureLevel'] == 'UnderExposure') and (data_exposure['value'] > 0.70):
+        if (Config.DEFAULT_IDIOM == "español"): exposure += "Bajo exposición.\n"
+        else: exposure += "UnderExposure.\n"
+    
+    return exposure
+
+
+def get_noise(data_noise):
+    try:
+        if True:
+            raise NotImplementedError(f"\nNo implement get_noise yet")
+    
+    except NotImplementedError as nie:
+        print(nie)
+    
+    return ""
+
+
+def get_occlusion(data_occlusion):
+    try:
+        if True:
+            raise NotImplementedError(f"\nNo implement get_noise yet")
+    
+    except NotImplementedError as nie:
+        print(nie)
+    
+    return ""
+
+
+def get_mask(data_mask):
+    mask = ""
+    
+    try:
+        mask = data_mask['type']
+        
+        if Config.DEFAULT_IDIOM == 'español':
+            if mask == 'noMask': mask = 'Sin mascarilla'
+            elif mask == 'faceMask': mask = 'Mascarilla'
+            elif mask == 'otherMaskOrOcclusion': mask = 'Otro tipo de mascarilla.'
+            else: mask = 'incierto'
+            
+        if str(data_mask['noseAndMouthCovered']).lower() == 'true':
+            if Config.DEFAULT_IDIOM == 'español': mask += '.\nNariz y boca cubiertas'
+            else: mask += ".\nNose and mouth covered"
+        
+    except Exception:
+        print(f"\nError to try get the face mask data")
+        
+    else:
+        mask += '.\n'
+    
+    finally:
+        return mask
+
+
+def get_qualityForRecognition(data_qualityForRecognition):
+    qualityForRecognition = ""
+    
+    qualityForRecognition = data_qualityForRecognition
+    
+    if Config.DEFAULT_IDIOM == 'español':
+        if qualityForRecognition == 'low': qualityForRecognition = 'Bajo'
+        if qualityForRecognition == 'medium': qualityForRecognition = 'Medio'
+        if qualityForRecognition == 'high': qualityForRecognition = 'Alto'
+    
+    qualityForRecognition += ".\n"
+    
+    return qualityForRecognition
 
 
 def get_face_data(face_attributes):
     params_data = ""
     
-    for attribute in face_attributes:
-        if attribute == 'age':
-            params_data = get_age(face_attributes[attribute])
+    try:
+        for attribute in face_attributes:
+            if attribute == 'age':
+                params_data += get_age(face_attributes[attribute])
+                
+            elif attribute == 'gender':
+                params_data += get_gender(face_attributes[attribute])
+                
+            elif attribute == 'smile':
+                params_data += get_smile(face_attributes[attribute])
             
-        elif attribute == 'gender':
-            params_data = get_gender(face_attributes[attribute])
+            elif attribute == 'facialHair':
+                params_data += get_facialHair(face_attributes[attribute])
             
-        elif attribute == 'smile':
-            params_data = get_smile(face_attributes[attribute])
-        
-        elif attribute == 'facialHair':
-            params_data = get_facialHair(face_attributes[attribute])
-        
-        elif attribute == 'headPose':
-            pass
-        
-        elif attribute == 'glasses':
-            pass
-        
-        elif attribute == 'emotion':
-            pass
-        
-        elif attribute == 'hair':
-            pass
-        
-        elif attribute == 'makeup':
-            pass
-        
-        elif attribute == 'accessories':
-            pass
-        
-        elif attribute == 'blur':
-            pass
-        
-        elif attribute == 'exposure':
-            pass
-        
-        elif attribute == 'noise':
-            pass
-        
-        elif attribute == 'occlusion':
-            pass
-        
-        elif attribute == 'mask':
-            pass
-        
-        elif attribute == 'qualityForRecognition':
-            pass
-        
-        else:
-            pass
+            elif attribute == 'headPose':
+                params_data += get_headPose(face_attributes[attribute])
+            
+            elif attribute == 'glasses':
+                params_data += get_glasses(face_attributes[attribute])
+            
+            elif attribute == 'emotion':
+                params_data += get_emotion(face_attributes[attribute])
+            
+            elif attribute == 'hair':
+                params_data += get_hair(face_attributes[attribute])
+            
+            elif attribute == 'makeup':
+                params_data += get_makeup(face_attributes[attribute])
+            
+            elif attribute == 'accessories':
+                params_data += get_accessories(face_attributes[attribute])
+            
+            elif attribute == 'blur':
+                params_data += get_blur(face_attributes[attribute])
+            
+            elif attribute == 'exposure':
+                params_data += get_exposure(face_attributes[attribute])
+            
+            elif attribute == 'noise':
+                params_data += get_noise(face_attributes[attribute])
+            
+            elif attribute == 'occlusion':
+                params_data += get_occlusion(face_attributes[attribute])
+            
+            elif attribute == 'mask':
+                params_data += get_mask(face_attributes[attribute])
+            
+            elif attribute == 'qualityForRecognition':
+                params_data += get_qualityForRecognition(face_attributes[attribute])
+            
+            else:
+                raise ValueError(f"\nAttribute not found")
+            
+    except ValueError as ve:
+        print(ve)
     
-    return params_data
+    finally:
+        return params_data
