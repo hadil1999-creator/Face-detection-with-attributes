@@ -133,6 +133,25 @@ def read_image_with_binary(image_name, image_path = ""):
         
         return body
 
+def read_image_with_binary_by_path(image_path):
+    body = None
+    
+    path = image_path
+    
+    try:
+        img = open(file = path, mode = 'rb')
+        body = img.read()
+        
+    except IOError:
+        print(f"\nError to open the image")
+
+    else:
+        print(f"\nImage opened successfully")
+            
+    finally:
+        img.close()
+        
+        return body
 
 def get_face_detection_url(endpoint):
     return endpoint + FaceDetectConfig.REQUEST_URL
