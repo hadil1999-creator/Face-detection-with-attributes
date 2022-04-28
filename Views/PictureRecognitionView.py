@@ -28,8 +28,8 @@ def facial_recognition_with_features(image_name):
             picture.close()
 
 
-def facial_recognition_with_features_gui(image_name):
-    data, image = FaceDetectController.face_identify_by_path(image_name)
+def facial_recognition_with_features_gui(image_path):
+    data, image = FaceDetectController.face_identify_by_path(image_path)
     
     if (data != None) and (image != None):
         picture = DrawingFunctions.draw_features(data, image)
