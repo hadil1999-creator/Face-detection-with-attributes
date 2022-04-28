@@ -133,6 +133,7 @@ def read_image_with_binary(image_name, image_path = ""):
         
         return body
 
+
 def read_image_with_binary_by_path(image_path):
     body = None
     
@@ -152,6 +153,7 @@ def read_image_with_binary_by_path(image_path):
         img.close()
         
         return body
+
 
 def get_face_detection_url(endpoint):
     return endpoint + FaceDetectConfig.REQUEST_URL
@@ -203,18 +205,28 @@ def get_keys(dictionary):
 def get_name(returnFaceId, face_id):
     name = ""
     
-    if returnFaceId == 'true':
-        name = FaceIdentifyController.identify_face()
-        
-        if name == None:
-            name = face_id[0:8] + "..."
+    try:
+        if returnFaceId == 'true':
+            name = FaceIdentifyController.identify_face()
+            
+            if name == None:
+                raise ValueError(f"\nUnidentified face.")
 
+        else:
+            name = "Error, return face id is disabled"
+        
+    except ValueError as ve:
+        print(ve)
+        name = face_id[0:8] + "...\n"
+        
+    except Exception:
+        print(f"\nError to try get_name.")
+    
     else:
-        name = "Error, return face id is disabled"
+        name += ".\n"
     
-    name += "\n"
-    
-    return name
+    finally:
+        return name
 
 
 def get_age(age_data):
@@ -383,15 +395,15 @@ def get_accessories(data_accessories):
     try:
         for accesory in data_accessories:
             if (accesory['type'] == "headWear") and (accesory['confidence'] > 0.90):
-                if (Config.DEFAULT_IDIOM == "español"): accesories += "Gorra/Sombrero. "
+                if (Config.DEFAULT_IDIOM == "español"): accesories += "Gorra/Sombrero."
                 else: accesories += "HeadWear. "
                 
             if (accesory['type'] == "glasses") and (accesory['confidence'] > 0.90):
-                if (Config.DEFAULT_IDIOM == "español"): accesories += "Lentes. "
+                if (Config.DEFAULT_IDIOM == "español"): accesories += "Lentes."
                 else: accesories += "Glasses. "
                 
             if (accesory['type'] == "mask") and (accesory['confidence'] > 0.90):
-                if (Config.DEFAULT_IDIOM == "español"): accesories += "Mascara. "
+                if (Config.DEFAULT_IDIOM == "español"): accesories += "Mascara."
                 else: accesories += "Mask. "
     
     except Exception:
