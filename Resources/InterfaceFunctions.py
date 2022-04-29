@@ -67,7 +67,7 @@ def about_button():
     messagebox.showinfo("About",
     "Universidad Autonoma de Nuevo Leon\n"
     "Facultad de Ciencias Fisico Matematicas\n"
-    "033 Sistemas Embebidos Avanzados\n\n"
+    "Sistemas Embebidos Avanzados\n\n"
     "Equipo 1\n"
     "Miembros:\n"
     "Andrik De La Cruz Martínez\n"
@@ -83,5 +83,8 @@ def contact_button():
 
     messagebox.showinfo("Contact",
     "You can contact the contributors via email.\n\n"
+    "andrikdelacruz@gmail.com\n"
+    "edson2gest73@gmail.com\n"
     "emilio.landin@gmail.com\n"
+    "omar.barronts@hotmail.com\n"
     )
