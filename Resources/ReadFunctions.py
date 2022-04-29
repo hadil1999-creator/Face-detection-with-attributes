@@ -396,15 +396,15 @@ def get_accessories(data_accessories):
         for accesory in data_accessories:
             if (accesory['type'] == "headWear") and (accesory['confidence'] > 0.90):
                 if (Config.DEFAULT_IDIOM == "español"): accesories += "Gorra/Sombrero."
-                else: accesories += "HeadWear. "
+                else: accesories += "HeadWear."
                 
             if (accesory['type'] == "glasses") and (accesory['confidence'] > 0.90):
                 if (Config.DEFAULT_IDIOM == "español"): accesories += "Lentes."
-                else: accesories += "Glasses. "
+                else: accesories += "Glasses."
                 
             if (accesory['type'] == "mask") and (accesory['confidence'] > 0.90):
                 if (Config.DEFAULT_IDIOM == "español"): accesories += "Mascara."
-                else: accesories += "Mask. "
+                else: accesories += "Mask."
     
     except Exception:
         accesories = ""
