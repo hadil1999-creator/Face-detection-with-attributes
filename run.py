@@ -1,5 +1,5 @@
 from Views import PictureRecognitionView
-from Interface import Interface
+from Views import InterfaceView
 
 def run():
     try:
@@ -24,4 +24,4 @@ def run():
             print(f"\nSin acción")
 
 if __name__ == "__main__":
-    Interface.interface()
+    InterfaceView.interface_view()
