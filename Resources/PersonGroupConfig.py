@@ -8,11 +8,11 @@ def header(subscription_key):
     
     return headers
 
-def params(name_person, data):
-    params = {
+def body(name_person, data):
+    body = {
         'name': name_person,
         'userData': data,
         'recognitionModel': 'recognition_01',
     }
     
-    return params
+    return body
