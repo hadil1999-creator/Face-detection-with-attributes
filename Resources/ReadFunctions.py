@@ -1,4 +1,4 @@
-from Resources import Config, FaceDetectConfig
+from Resources import Config, FaceDetectConfig, PersonGroupConfig
 from Controllers import FaceIdentifyController
 from io import BytesIO
 from PIL import Image
@@ -158,6 +158,10 @@ def read_image_with_binary_by_path(image_path):
 
 def get_face_detection_url(endpoint):
     return endpoint + FaceDetectConfig.REQUEST_URL
+
+
+def get_person_group_url(endpoint, personGroupId):
+    return endpoint + PersonGroupConfig.REQUEST_URL + personGroupId
 
 
 def get_dictionary_text(dictionary, key, separator):
