@@ -14,7 +14,8 @@ def create_file_txt(file_name, data):
         
     finally:
         f.close()
-        
+
+
 def save_person_group_info(person_name):
     person_group_info = ""
     
@@ -29,5 +30,5 @@ def save_person_group_info(person_name):
 
     else:
         create_file_txt(person_name, person_group_info)
-        return PERSON_GROUP_ID
         
+        return PERSON_GROUP_ID
