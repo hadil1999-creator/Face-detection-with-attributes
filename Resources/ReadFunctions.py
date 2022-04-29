@@ -2,6 +2,7 @@ from Resources import Config, FaceDetectConfig
 from Controllers import FaceIdentifyController
 from io import BytesIO
 from PIL import Image
+import uuid
 import os
 
 
@@ -200,6 +201,14 @@ def get_keys(dictionary):
         return list_values
     
     return None
+
+
+def get_person_group_id():
+    PERSON_GROUP_ID = str(uuid.uuid4())             # assign a random ID (or name it anything)
+    
+    # Used for the Delete Person Group example.
+    TARGET_PERSON_GROUP_ID = str(uuid.uuid4())      # assign a random ID (or name it anything)
+    return [PERSON_GROUP_ID, TARGET_PERSON_GROUP_ID]
 
 
 def get_name(returnFaceId, face_id):
