@@ -11,6 +11,8 @@ def create_file_txt(file_name, data):
         
     else: 
         f.write(data)
+        
+    finally:
         f.close()
         
 def save_person_group_info(person_name):
