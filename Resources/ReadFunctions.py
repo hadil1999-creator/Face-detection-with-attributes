@@ -208,6 +208,7 @@ def get_person_group_id():
     
     # Used for the Delete Person Group example.
     TARGET_PERSON_GROUP_ID = str(uuid.uuid4())      # assign a random ID (or name it anything)
+    
     return [PERSON_GROUP_ID, TARGET_PERSON_GROUP_ID]
 
 
