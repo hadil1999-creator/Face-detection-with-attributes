@@ -12,7 +12,7 @@ def picture_face_recognition(image_name):
         
         if picture != None:
             picture.show()
-            picture.save("result.jpg")
+            picture.save("result.png", "PNG")
             picture.close()
 
 
@@ -24,7 +24,7 @@ def facial_recognition_with_features(image_name):
         
         if picture != None:
             picture.show()
-            picture.save("result.jpg")
+            picture.save("result.png", "PNG")
             picture.close()
 
 def picture_face_recognition_gui(image_path):
@@ -34,7 +34,7 @@ def picture_face_recognition_gui(image_path):
         picture = DrawingFunctions.draw_rectangles_in_faces(data, image)
         
         if picture != None:
-            picture.save("result.jpg")
+            picture.save("result.png", "PNG")
 
 def facial_recognition_with_features_gui(image_path):
     data, image = FaceDetectController.face_identify_by_path(image_path)
@@ -43,4 +43,4 @@ def facial_recognition_with_features_gui(image_path):
         picture = DrawingFunctions.draw_features(data, image)
         
         if picture != None:
-            picture.save("result.jpg")
+            picture.save("result.png", "PNG")

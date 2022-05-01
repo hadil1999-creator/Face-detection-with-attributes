@@ -32,14 +32,14 @@ def _resize_image(label: Label, image: Image):
     return image
 
 def _display_img_result(label: Label):
-    '''Displays the 'result.jpg' image of the root folder by updating the label given.
+    '''Displays the 'result.png' image of the root folder by updating the label given.
 
     :param label: Label that will be updated.
     :type label: Label
     '''
 
     # Get the image from the root folder.
-    image = Image.open('result.jpg')
+    image = Image.open('result.png')
     image = _resize_image(label, image)
 
     # Update the label.
