@@ -1,5 +1,3 @@
-import uuid
-
 def identify_face():
     try:
         if True:
